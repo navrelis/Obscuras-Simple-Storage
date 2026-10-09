@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "obscuras_storage:block/inventory_proxy_top",
+        "down": "obscuras_storage:block/inventory_proxy_bottom",
+        "north": "obscuras_storage:block/inventory_proxy_side",
+         "east": "obscuras_storage:block/inventory_proxy_side",
+        "south": "obscuras_storage:block/inventory_proxy_side",
+         "west": "obscuras_storage:block/inventory_proxy_side",
+        "particle": "obscuras_storage:block/inventory_proxy_side"
+    }
+}

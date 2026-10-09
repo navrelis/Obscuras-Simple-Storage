@@ -1,0 +1,10 @@
+{
+	"variants": {
+	    "facing=down": {"model": "obscuras_storage:block/opencrate"},
+		"facing=up": {"model": "obscuras_storage:block/opencrate", "x": 180},
+		"facing=north": {"model": "obscuras_storage:block/opencrate", "x": 90, "y": 180},
+		"facing=south": {"model": "obscuras_storage:block/opencrate", "x": 90},
+		"facing=east": {"model": "obscuras_storage:block/opencrate", "y": 270, "x": 90},
+		"facing=west": {"model": "obscuras_storage:block/opencrate", "y": 90, "x": 90}
+	}
+}

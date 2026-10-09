@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "inv_changed-item_filter": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "obscuras_storage:item_filter"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:condition_filter"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-item_filter"
+    ]
+  ]
+}

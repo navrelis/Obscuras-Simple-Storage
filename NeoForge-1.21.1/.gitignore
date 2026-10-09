@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+bin/
+out/
+*.launch
+
+# Runtime
+run/
+/config/
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+old_stuff/
+codes/
+libs/*.jar
+!libs/vc_dummy.jar
+
+# Resource pack subfolder
+Re-Simple-Storage/

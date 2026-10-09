@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:barrel"
+    },
+    {
+      "item": "obscuras_storage:inventory_cable"
+    },
+    {
+      "tag": "c:iron_ingots"
+    },
+    {
+      "tag": "c:iron_ingots"
+    }
+  ],
+  "result": {
+    "item": "obscuras_storage:shulker_dock"
+  }
+}

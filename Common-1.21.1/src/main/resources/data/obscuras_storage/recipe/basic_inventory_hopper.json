@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PcP",
+    " H "
+  ],
+  "key": {
+  	"P": {
+      "tag": "minecraft:planks"
+    },
+    "c": {
+      "item": "obscuras_storage:inventory_cable"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "id": "obscuras_storage:basic_inventory_hopper"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  	"RSR",
+    "SWS",
+    "RSR"
+  ],
+  "key": {
+  	"R": {
+      "tag": "c:redstone_dusts"
+    },
+    "W": {
+    	"tag": "minecraft:wool"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "obscuras_storage:item_filter",
+    "count": 1
+  }
+}

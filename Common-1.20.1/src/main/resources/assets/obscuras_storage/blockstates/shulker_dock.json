@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "box=none,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock"
+    },
+    "box=shulker,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box"
+    },
+    "box=white,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_white"
+    },
+    "box=orange,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_orange"
+    },
+    "box=magenta,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_magenta"
+    },
+    "box=light_blue,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_blue"
+    },
+    "box=yellow,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_yellow"
+    },
+    "box=lime,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_lime"
+    },
+    "box=pink,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_pink"
+    },
+    "box=gray,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_gray"
+    },
+    "box=light_gray,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_gray"
+    },
+    "box=cyan,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_cyan"
+    },
+    "box=purple,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_purple"
+    },
+    "box=blue,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_blue"
+    },
+    "box=brown,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_brown"
+    },
+    "box=green,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_green"
+    },
+    "box=red,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_red"
+    },
+    "box=black,facing=north": {
+      "model": "obscuras_storage:block/shulker_dock_box_black"
+    },
+    "box=none,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock",
+      "y": 90
+    },
+    "box=shulker,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box",
+      "y": 90
+    },
+    "box=white,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_white",
+      "y": 90
+    },
+    "box=orange,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_orange",
+      "y": 90
+    },
+    "box=magenta,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_magenta",
+      "y": 90
+    },
+    "box=light_blue,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_blue",
+      "y": 90
+    },
+    "box=yellow,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_yellow",
+      "y": 90
+    },
+    "box=lime,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_lime",
+      "y": 90
+    },
+    "box=pink,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_pink",
+      "y": 90
+    },
+    "box=gray,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_gray",
+      "y": 90
+    },
+    "box=light_gray,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_gray",
+      "y": 90
+    },
+    "box=cyan,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_cyan",
+      "y": 90
+    },
+    "box=purple,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_purple",
+      "y": 90
+    },
+    "box=blue,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_blue",
+      "y": 90
+    },
+    "box=brown,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_brown",
+      "y": 90
+    },
+    "box=green,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_green",
+      "y": 90
+    },
+    "box=red,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_red",
+      "y": 90
+    },
+    "box=black,facing=east": {
+      "model": "obscuras_storage:block/shulker_dock_box_black",
+      "y": 90
+    },
+    "box=none,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock",
+      "y": 180
+    },
+    "box=shulker,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box",
+      "y": 180
+    },
+    "box=white,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_white",
+      "y": 180
+    },
+    "box=orange,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_orange",
+      "y": 180
+    },
+    "box=magenta,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_magenta",
+      "y": 180
+    },
+    "box=light_blue,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_blue",
+      "y": 180
+    },
+    "box=yellow,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_yellow",
+      "y": 180
+    },
+    "box=lime,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_lime",
+      "y": 180
+    },
+    "box=pink,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_pink",
+      "y": 180
+    },
+    "box=gray,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_gray",
+      "y": 180
+    },
+    "box=light_gray,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_gray",
+      "y": 180
+    },
+    "box=cyan,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_cyan",
+      "y": 180
+    },
+    "box=purple,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_purple",
+      "y": 180
+    },
+    "box=blue,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_blue",
+      "y": 180
+    },
+    "box=brown,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_brown",
+      "y": 180
+    },
+    "box=green,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_green",
+      "y": 180
+    },
+    "box=red,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_red",
+      "y": 180
+    },
+    "box=black,facing=south": {
+      "model": "obscuras_storage:block/shulker_dock_box_black",
+      "y": 180
+    },
+    "box=none,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock",
+      "y": 270
+    },
+    "box=shulker,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box",
+      "y": 270
+    },
+    "box=white,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_white",
+      "y": 270
+    },
+    "box=orange,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_orange",
+      "y": 270
+    },
+    "box=magenta,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_magenta",
+      "y": 270
+    },
+    "box=light_blue,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_blue",
+      "y": 270
+    },
+    "box=yellow,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_yellow",
+      "y": 270
+    },
+    "box=lime,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_lime",
+      "y": 270
+    },
+    "box=pink,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_pink",
+      "y": 270
+    },
+    "box=gray,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_gray",
+      "y": 270
+    },
+    "box=light_gray,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_light_gray",
+      "y": 270
+    },
+    "box=cyan,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_cyan",
+      "y": 270
+    },
+    "box=purple,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_purple",
+      "y": 270
+    },
+    "box=blue,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_blue",
+      "y": 270
+    },
+    "box=brown,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_brown",
+      "y": 270
+    },
+    "box=green,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_green",
+      "y": 270
+    },
+    "box=red,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_red",
+      "y": 270
+    },
+    "box=black,facing=west": {
+      "model": "obscuras_storage:block/shulker_dock_box_black",
+      "y": 270
+    }
+  }
+}

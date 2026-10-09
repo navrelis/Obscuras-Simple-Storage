@@ -1,0 +1,6 @@
+{
+  "parent": "obscuras_storage:block/shulker_dock",
+  "textures": {
+    "inner": "minecraft:block/cyan_shulker_box"
+  }
+}

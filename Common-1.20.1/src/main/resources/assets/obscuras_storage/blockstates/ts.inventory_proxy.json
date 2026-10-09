@@ -1,0 +1,57 @@
+{
+	"multipart": [
+	    {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy"
+          },
+          "when": {
+            "facing": "down"
+          }
+        },
+        {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy",
+            "x": 180
+          },
+          "when": {
+            "facing": "up"
+          }
+        },
+        {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy",
+            "x": 90, "y": 180
+          },
+          "when": {
+            "facing": "north"
+          }
+        },
+        {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy",
+            "x": 90
+          },
+          "when": {
+            "facing": "south"
+          }
+        },
+        {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy",
+            "y": 270, "x": 90
+          },
+          "when": {
+            "facing": "east"
+          }
+        },
+        {
+          "apply": {
+            "model": "obscuras_storage:block/inventory_proxy",
+            "y": 90, "x": 90
+          },
+          "when": {
+            "facing": "west"
+          }
+        }
+	]
+}

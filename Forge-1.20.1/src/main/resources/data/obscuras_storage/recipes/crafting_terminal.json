@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  	"cdc",
+    "dtd",
+    "cdc"
+  ],
+  "key": {
+  	"d": {
+      "tag": "forge:gems/diamond"
+    },
+    "c": {
+      "item": "minecraft:crafting_table"
+    },
+    "t": {
+      "item": "obscuras_storage:storage_terminal"
+    }
+  },
+  "result": {
+    "item": "obscuras_storage:crafting_terminal"
+  }
+}

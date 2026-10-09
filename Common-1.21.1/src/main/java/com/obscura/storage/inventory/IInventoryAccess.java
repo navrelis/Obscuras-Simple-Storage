@@ -1,0 +1,178 @@
+package com.obscura.storage.inventory;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+
+import com.obscura.storage.inventory.filter.ItemPredicate;
+
+public interface IInventoryAccess extends IChangeTrackerAccess, IProxy {
+
+	default ItemStack pullMatchingStack(ItemStack st, long max) {
+		InventorySlot slot = null;
+		var tr = tracker();
+		StoredItemStack s = new StoredItemStack(st, 1);
+		ItemPredicate ip = s::equalItem;
+		ItemStack ext = null;
+		long ex = 0;
+		while (ex < max && (slot = tr.findSlotAfter(slot, ip, false, false)) != null) {
+			ItemStack e = slot.extract((int) (max - ex));
+			if (ext == null)ext = e;
+			else ext.grow(e.getCount());
+			ex += e.getCount();
+		}
+		return ext != null ? ext : ItemStack.EMPTY;
+	}
+
+	default ItemStack pushStack(ItemStack stack) {
+		var tr = tracker();
+		StoredItemStack s = new StoredItemStack(stack);
+		InventorySlot slot = null;
+		while (!stack.isEmpty() && (slot = tr.findSlotDestAfter(slot, s, false)) != null) {
+			stack = slot.insert(stack);
+			s.setCount(stack.getCount());
+		}
+		return stack;
+	}
+
+	int getFreeSlotCount();
+	int getSlotCount();
+
+	@Deprecated
+	Object get();
+
+	@Override
+	IInventoryAccess getRootHandler(Set<IProxy> dejaVu);
+
+	@SuppressWarnings({"unchecked", "deprecation"})
+	default <T> T getPlatformHandler() {
+		T t = (T) get();
+		return t != null ? t : (T) PlatformInventoryAccess.EMPTY.get();
+	}
+
+	default void markInvalid() {}
+
+	public static interface IMultiThreadedTracker<A, B> {
+		A prepForOffThread(Level level);
+		B processOffThread(A array);
+		long finishOffThreadProcess(Level level, B ct);
+	}
+
+	public static interface IChangeNotifier {
+		void onSlotChanged(InventorySlot slot);
+	}
+
+	public static interface IInventoryChangeTracker {
+		long getChangeTracker(Level level);
+
+		Stream<StoredItemStack> streamWrappedStacks(boolean parallel);
+		long countItems(StoredItemStack filter);
+		InventorySlot findSlot(ItemPredicate filter, boolean findEmpty);
+		InventorySlot findSlotAfter(InventorySlot slot, ItemPredicate filter, boolean findEmpty, boolean loop);
+		InventorySlot findSlotDest(StoredItemStack forStack);
+		InventorySlot findSlotDestAfter(InventorySlot slot, StoredItemStack forStack, boolean loop);
+
+		/** Whether {@code slot} was handed out by this tracker (by one of its members, for a network). */
+		default boolean owns(InventorySlot slot) {
+			return false;
+		}
+
+		/**
+		 * {@link #streamWrappedStacks}(false) without the slots whose underlying view is in {@code exclude}.
+		 * A network uses it when two faces of one sided block expose some of the same slots, so each slot
+		 * is counted once. Trackers that do not track single slots ignore {@code exclude}.
+		 */
+		default Stream<StoredItemStack> streamWrappedStacks(Set<?> exclude) {
+			return streamWrappedStacks(false);
+		}
+
+		/** {@link #countItems} without the slots whose underlying view is in {@code exclude}. */
+		default long countItems(StoredItemStack filter, Set<?> exclude) {
+			return countItems(filter);
+		}
+
+		public static class Delegate implements IInventoryChangeTracker, IMultiThreadedTracker<Object, Object> {
+			private IInventoryChangeTracker delegate;
+
+			@Override
+			public Stream<StoredItemStack> streamWrappedStacks(boolean parallel) {
+				return delegate.streamWrappedStacks(parallel);
+			}
+
+			@Override
+			public long countItems(StoredItemStack filter) {
+				return delegate.countItems(filter);
+			}
+
+			@Override
+			public long getChangeTracker(Level level) {
+				return delegate.getChangeTracker(level);
+			}
+
+			public void setDelegate(IInventoryChangeTracker delegate) {
+				this.delegate = delegate;
+			}
+
+			@Override
+			public InventorySlot findSlot(ItemPredicate filter, boolean findEmpty) {
+				return delegate.findSlot(filter, findEmpty);
+			}
+
+			@Override
+			public Object prepForOffThread(Level level) {
+				if (delegate instanceof IMultiThreadedTracker t)
+					return t.prepForOffThread(level);
+				else
+					return null;
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public Object processOffThread(Object array) {
+				return ((IMultiThreadedTracker<Object, Object>) delegate).processOffThread(array);
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public long finishOffThreadProcess(Level level, Object ct) {
+				return ((IMultiThreadedTracker<Object, Object>) delegate).finishOffThreadProcess(level, ct);
+			}
+
+			@Override
+			public InventorySlot findSlotDest(StoredItemStack forStack) {
+				return delegate.findSlotDest(forStack);
+			}
+
+			@Override
+			public InventorySlot findSlotAfter(InventorySlot slot, ItemPredicate filter, boolean findEmpty, boolean loop) {
+				return delegate.findSlotAfter(slot, filter, findEmpty, loop);
+			}
+
+			@Override
+			public InventorySlot findSlotDestAfter(InventorySlot slot, StoredItemStack forStack, boolean loop) {
+				return delegate.findSlotDestAfter(slot, forStack, loop);
+			}
+
+			@Override
+			public boolean owns(InventorySlot slot) {
+				return delegate != null && delegate.owns(slot);
+			}
+
+			@Override
+			public Stream<StoredItemStack> streamWrappedStacks(Set<?> exclude) {
+				return delegate.streamWrappedStacks(exclude);
+			}
+
+			@Override
+			public long countItems(StoredItemStack filter, Set<?> exclude) {
+				return delegate.countItems(filter, exclude);
+			}
+		}
+	}
+
+	public static interface IInventory {
+		IInventoryAccess getInventoryAccess();
+	}
+}

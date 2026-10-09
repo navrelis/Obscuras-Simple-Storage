@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "inv_changed-chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:chests"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:inventory_cable",
+      "obscuras_storage:inventory_cable_framed",
+      "obscuras_storage:inventory_cable_framed_clean",
+      "obscuras_storage:inventory_hopper_basic",
+      "obscuras_storage:inventory_proxy",
+      "obscuras_storage:inventory_proxy_clean",
+      "obscuras_storage:open_crate",
+      "obscuras_storage:paint_kit",
+      "obscuras_storage:trim",
+      "obscuras_storage:trim_clean",
+      "obscuras_storage:filing_cabinet"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-chest"
+    ]
+  ]
+}

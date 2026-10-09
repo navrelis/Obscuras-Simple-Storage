@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "obscuras_storage",
+  "version": "${version}",
+
+  "name": "Obscura's Simple Storage",
+  "description": "A heavily optimized storage mod for Minecraft, made and maintained by Navrelis.",
+  "authors": [
+    "Navrelis"
+  ],
+  "contact": {
+  },
+
+  "license": "MIT",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+  	"client": [
+      "com.obscura.storage.StorageModClient"
+    ],
+    "main": [
+      "com.obscura.storage.StorageMod"
+    ],
+    "modmenu": [
+      "com.obscura.storage.ModMenu"
+    ],
+	"rei_client": [
+    	"com.obscura.storage.rei.REIPlugin"
+    ],
+    "emi": [
+    	"com.obscura.storage.emi.EMIPlugin"
+    ],
+    "jei_mod_plugin": [
+		"com.obscura.storage.jei.JEIHandler"
+	]
+  },
+  "mixins": [
+    "obscuras_storage.mixins.json"
+  ],
+	"accessWidener" : "obscuras_storage.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.7.4",
+    "fabric": "*",
+    "minecraft": ">=1.20 <=1.20.1"
+  }
+}

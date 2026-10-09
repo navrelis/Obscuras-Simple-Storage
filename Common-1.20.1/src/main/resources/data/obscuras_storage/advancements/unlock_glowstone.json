@@ -1,0 +1,27 @@
+{
+  "criteria": {
+    "inv_changed-glowstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:glowstone"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:storage_terminal",
+      "obscuras_storage:crafting_terminal"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-glowstone"
+    ]
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+  	{
+  		"item": "obscuras_storage:item_filter"
+  	},
+  	{
+  		"item": "minecraft:comparator"
+  	},
+  	{
+  		"item": "minecraft:name_tag"
+  	}
+  ],
+  "result": {
+    "item": "obscuras_storage:tag_item_filter",
+    "count": 1
+  }
+}

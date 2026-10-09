@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_shulker_box": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#obscuras_storage:dockable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_inventory_cable": {
+      "conditions": {
+        "items": [
+          {
+            "items": "obscuras_storage:inventory_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "obscuras_storage:shulker_dock"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_shulker_box",
+      "has_inventory_cable"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:shulker_dock"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PcP",
+    "RHR"
+  ],
+  "key": {
+    "P": {
+      "tag": "minecraft:planks"
+    },
+    "c": {
+      "item": "obscuras_storage:inventory_cable"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "H": {
+      "item": "minecraft:hopper"
+    }
+  },
+  "result": {
+    "item": "obscuras_storage:exporter"
+  }
+}

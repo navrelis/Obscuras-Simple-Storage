@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+  	{
+  		"item": "obscuras_storage:item_filter"
+  	},
+  	{
+  		"item": "minecraft:comparator"
+  	},
+  	{
+  		"item": "minecraft:lapis_lazuli"
+  	}
+  ],
+  "result": {
+    "id": "obscuras_storage:condition_filter"
+  }
+}

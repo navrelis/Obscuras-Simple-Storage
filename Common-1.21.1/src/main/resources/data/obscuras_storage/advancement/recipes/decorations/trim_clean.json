@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_painted_trim": {
+      "conditions": {
+        "items": [
+          {
+            "items": "obscuras_storage:painted_trim"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "obscuras_storage:trim_clean"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_painted_trim"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:trim_clean"
+    ]
+  }
+}

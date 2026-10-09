@@ -1,0 +1,8 @@
+{
+	"replace": false,
+	"values": {
+		"minecraft:dirt": {
+			"burn_time": 100
+		}
+	}
+}

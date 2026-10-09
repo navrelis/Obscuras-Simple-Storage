@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "inv_changed-netherite": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:adv_wireless_terminal"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-netherite"
+    ]
+  ]
+}

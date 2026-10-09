@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:block/cube",
+  "display": {
+    "firstperson_righthand": {
+      "rotation": [0, 135, 0],
+      "translation": [0, 0, 0],
+      "scale": [0.40, 0.40, 0.40]
+    }
+  },
+  "textures": {
+    "particle": "obscuras_storage:block/inventory_block",
+    "north": "obscuras_storage:block/disposal_front",
+    "south": "obscuras_storage:block/filter_block_back",
+    "east": "obscuras_storage:block/inventory_block",
+    "west": "obscuras_storage:block/inventory_block",
+    "up": "obscuras_storage:block/inventory_block",
+    "down": "obscuras_storage:block/inventory_block"
+  }
+}

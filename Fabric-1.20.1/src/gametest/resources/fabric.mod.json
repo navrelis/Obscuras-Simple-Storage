@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "obscuras_storage_gametest",
+  "version": "1.0.0",
+  "name": "Obscura's Simple Storage GameTests",
+  "description": "In-world automated tests, development only. Never shipped in the release jar.",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-gametest": [
+      "com.obscura.storage.gametest.NetworkGameTests",
+      "com.obscura.storage.gametest.HopperGameTests",
+      "com.obscura.storage.gametest.DeviceGameTests",
+      "com.obscura.storage.gametest.BuildersReachGameTests",
+      "com.obscura.storage.gametest.InventoryLinkGameTests",
+      "com.obscura.storage.gametest.MigrationGameTests",
+      "com.obscura.storage.gametest.DoctorGameTests",
+      "com.obscura.storage.gametest.RedstoneGameTests",
+      "com.obscura.storage.gametest.FrameLabelGameTests",
+      "com.obscura.storage.gametest.ShulkerDockGameTests",
+      "com.obscura.storage.gametest.FilterBlockGameTests",
+      "com.obscura.storage.gametest.TidyGameTests",
+      "com.obscura.storage.gametest.HighlightNetworkGameTests"
+    ]
+  },
+  "depends": {
+    "obscuras_storage": "*",
+    "fabric-gametest-api-v1": "*"
+  }
+}

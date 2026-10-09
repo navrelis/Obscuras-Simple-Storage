@@ -1,0 +1,178 @@
+plugins {
+	id 'java-library'
+	id 'maven-publish'
+	id 'net.neoforged.moddev' version '2.0.148'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+	archivesName = project.archives_base_name
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+repositories {
+	maven {
+		// Curios
+		url = "https://maven.theillusivec4.top/"
+		content { includeGroup "top.theillusivec4.curios" }
+	}
+	maven {
+		// JEI
+		name = "Jared's maven"
+		url = "https://maven.blamejared.com/"
+		content { includeGroup "mezz.jei" }
+	}
+	maven {
+		url = "https://www.cursemaven.com"
+		content { includeGroup "curse.maven" }
+	}
+	maven { url = "https://maven.shedaniel.me/" }
+	maven { url = "https://maven.architectury.dev/" }
+	maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+// Loader-agnostic code and assets live in ../Common-1.21.1 (shared with the Fabric build). This
+// project's own src/main only holds the NeoForge platform classes (same class names as their Fabric
+// twins), neoforge.mods.toml, the access transformer and NeoForge-only data.
+def commonDir = file("../Common-1.21.1/src/main")
+
+sourceSets {
+	main {
+		java {
+			srcDir new File(commonDir, "java")
+		}
+		resources {
+			srcDir new File(commonDir, "resources")
+		}
+	}
+	// In-world GameTests (NeoForge @GameTestHolder). Own source set so none of it ends up in the
+	// release jar, which is built from the main source set only. Run: gradlew runGameTestServer
+	gametest {
+		compileClasspath += main.compileClasspath + main.output
+		runtimeClasspath += main.runtimeClasspath + main.output
+	}
+}
+
+neoForge {
+	version = project.neo_version
+
+	// src/main/resources/META-INF/accesstransformer.cfg is picked up by default
+	validateAccessTransformers = true
+
+	runs {
+		configureEach {
+			systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+			logLevel = org.slf4j.event.Level.INFO
+		}
+		client {
+			client()
+			gameDirectory = project.file('run/client')
+		}
+		server {
+			server()
+			programArgument '--nogui'
+			gameDirectory = project.file('run/server')
+		}
+		// Headless GameTest server: runs every registered test and exits, non-zero when a required test fails.
+		gameTestServer {
+			type = "gameTestServer"
+			gameDirectory = project.file('build/gametest')
+			sourceSet = sourceSets.gametest
+		}
+	}
+
+	mods {
+		"${mod_id}" {
+			sourceSet(sourceSets.main)
+			sourceSet(sourceSets.gametest)
+		}
+	}
+}
+
+// Every GameTest run starts from a fresh world
+tasks.matching { it.name == 'runGameTestServer' }.configureEach {
+	group = 'verification'
+	description = 'Runs the in-world GameTests on a headless server, fails when a test fails.'
+	doFirst {
+		delete file("build/gametest/world")
+	}
+}
+
+dependencies {
+	// Optional integrations: compile against their APIs only, never bundled or required.
+	compileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"
+	compileOnly "mezz.jei:jei-${minecraft_version}-neoforge-api:${jei_version}"
+
+	compileOnly("me.shedaniel:RoughlyEnoughItems-api-neoforge:${rei_version}") { transitive = false }
+	compileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-neoforge:${rei_version}") { transitive = false }
+	compileOnly("dev.architectury:architectury-neoforge:${architectury_version}") { transitive = false }
+	compileOnly "me.shedaniel.cloth:basic-math:0.6.1"
+
+	compileOnly "dev.emi:emi-neoforge:${emi_version}:api"
+
+	compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}:api"
+
+	compileOnly "curse.maven:jade-324717:${jade_file}"
+	compileOnly "curse.maven:polymorph-388800:${polymorph_file}"
+
+	// Vivecraft: API stub (same as the Fabric build)
+	compileOnly files("libs/vc_dummy.jar")
+
+	compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+}
+
+var replaceProperties = [
+		minecraft_version      : minecraft_version,
+		minecraft_version_range: minecraft_version_range,
+		neo_version            : neo_version,
+		neo_version_range      : neo_version_range,
+		loader_version_range   : loader_version_range,
+		mod_id                 : mod_id,
+		mod_name               : mod_name,
+		mod_license            : mod_license,
+		// FML needs a Maven version (starting with a digit); the jar name keeps the v prefix
+		mod_version            : mod_version.replaceFirst(/^v/, ""),
+		mod_authors            : mod_authors,
+		mod_credits            : mod_credits,
+		mod_description        : mod_description
+]
+
+processResources {
+	inputs.properties replaceProperties
+	filesMatching(['META-INF/neoforge.mods.toml']) {
+		expand replaceProperties
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	options.encoding = 'UTF-8'
+	options.release = 21
+	options.compilerArgs += ['-Xlint:deprecation', '-Xlint:unchecked']
+}
+
+java {
+	withSourcesJar()
+}
+
+jar {
+	from "../LICENSE"
+}
+
+publishing {
+	publications {
+		register('mavenJava', MavenPublication) {
+			from components.java
+		}
+	}
+	repositories {
+		def mavenURL = System.getProperty("mavenDir")
+		if ("${mavenURL}" != "null") {
+			maven {
+				url = file(mavenURL)
+			}
+		}
+	}
+}

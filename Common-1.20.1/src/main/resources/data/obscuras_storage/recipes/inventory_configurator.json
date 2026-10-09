@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " T",
+    "S "
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "T": {
+      "tag": "obscuras_storage:trims"
+    }
+  },
+  "result": {
+    "item": "obscuras_storage:inventory_configurator",
+    "count": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "obscuras_storage:basic_inventory_hopper",
+    "obscuras_storage:exporter",
+    "obscuras_storage:ejector",
+    "obscuras_storage:disposal",
+    "obscuras_storage:painted_trim",
+    "obscuras_storage:storage_terminal",
+    "obscuras_storage:crafting_terminal",
+    "minecraft:beacon",
+    "minecraft:ender_chest",
+    "minecraft:moving_piston",
+    "minecraft:comparator"
+  ]
+}

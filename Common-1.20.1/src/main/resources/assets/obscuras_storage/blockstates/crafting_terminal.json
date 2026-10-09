@@ -1,0 +1,18 @@
+{
+    "variants": {
+        "facing=north,pos=center": { "model": "obscuras_storage:block/crafting_terminal" },
+        "facing=south,pos=center": { "model": "obscuras_storage:block/crafting_terminal", "y": 180 },
+        "facing=west,pos=center": { "model": "obscuras_storage:block/crafting_terminal", "y": 270 },
+        "facing=east,pos=center": { "model": "obscuras_storage:block/crafting_terminal", "y": 90 },
+        
+        "facing=north,pos=up": { "model": "obscuras_storage:block/crafting_terminal", "x": -90 },
+        "facing=south,pos=up": { "model": "obscuras_storage:block/crafting_terminal", "y": 180, "x": -90 },
+        "facing=west,pos=up": { "model": "obscuras_storage:block/crafting_terminal", "y": 270, "x": -90 },
+        "facing=east,pos=up": { "model": "obscuras_storage:block/crafting_terminal", "y": 90, "x": -90 },
+        
+        "facing=north,pos=down": { "model": "obscuras_storage:block/crafting_terminal", "x": 90 },
+        "facing=south,pos=down": { "model": "obscuras_storage:block/crafting_terminal", "y": 180, "x": 90 },
+        "facing=west,pos=down": { "model": "obscuras_storage:block/crafting_terminal", "y": 270, "x": 90 },
+        "facing=east,pos=down": { "model": "obscuras_storage:block/crafting_terminal", "y": 90, "x": 90 }
+    }
+}

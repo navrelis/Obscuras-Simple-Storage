@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:furnace",
+    "minecraft:blast_furnace",
+    "minecraft:smoker",
+    "minecraft:brewing_stand",
+    {"id": "minecraft:crafter", "required": false},
+    "minecraft:hopper",
+    "minecraft:dropper",
+    "minecraft:dispenser",
+    "minecraft:jukebox",
+    "minecraft:chiseled_bookshelf",
+    "minecraft:decorated_pot",
+    "minecraft:lectern",
+    "obscuras_storage:filing_cabinet",
+    "obscuras_storage:open_crate"
+  ]
+}

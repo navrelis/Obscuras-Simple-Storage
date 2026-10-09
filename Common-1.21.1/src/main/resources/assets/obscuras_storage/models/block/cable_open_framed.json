@@ -1,0 +1,19 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "obscuras_storage:block/inventory_cable"
+    },
+    "elements": [
+        {
+            "name": "cable_open",
+            "from": [ 5.0, 5.0, 0.0 ],
+            "to": [ 11.0, 11.0, 5.0 ],
+            "faces": {
+                "east": { "texture": "#0", "uv": [ 10.0, 10.0, 16.0, 16.0 ] },
+                "west": { "texture": "#0", "uv": [ 10.0, 10.0, 16.0, 16.0 ] },
+                "up": { "texture": "#0", "uv": [ 10.0, 10.0, 16.0, 16.0 ] },
+                "down": { "texture": "#0", "uv": [ 10.0, 10.0, 16.0, 16.0 ] }
+            }
+        }
+    ]
+}

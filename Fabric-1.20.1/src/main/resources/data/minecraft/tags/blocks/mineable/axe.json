@@ -1,0 +1,27 @@
+{
+  "replace": false,
+  "values": [
+    "obscuras_storage:crafting_terminal",
+    "obscuras_storage:inventory_cable_connector_filtered",
+    "obscuras_storage:inventory_cable_connector",
+    "obscuras_storage:inventory_cable_connector_framed",
+    "obscuras_storage:inventory_cable_framed",
+    "obscuras_storage:inventory_cable",
+    "obscuras_storage:inventory_connector",
+    "obscuras_storage:basic_inventory_hopper",
+    "obscuras_storage:inventory_proxy",
+    "obscuras_storage:level_emitter",
+    "obscuras_storage:open_crate",
+    "obscuras_storage:painted_trim",
+    "obscuras_storage:storage_terminal",
+    "obscuras_storage:trim",
+    "obscuras_storage:inventory_interface",
+    "obscuras_storage:ts.inventory_cable_painted",
+    "obscuras_storage:ts.inventory_cable_connector_painted",
+    "obscuras_storage:ts.inventory_proxy_painted",
+    "obscuras_storage:shulker_dock",
+    "obscuras_storage:ejector",
+    "obscuras_storage:disposal",
+    "obscuras_storage:exporter"
+  ]
+}

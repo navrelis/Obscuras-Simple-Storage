@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  	"S S",
+    " C ",
+    "S S"
+  ],
+  "key": {
+    "C": {
+      "item": "obscuras_storage:inventory_cable"
+    },
+    "S": {
+      "tag": "c:rods/wooden"
+    }
+  },
+  "result": {
+    "id": "obscuras_storage:inventory_cable_framed"
+  }
+}

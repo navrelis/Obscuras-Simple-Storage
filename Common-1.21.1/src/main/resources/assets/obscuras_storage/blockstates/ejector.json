@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "obscuras_storage:block/ejector" },
+    "facing=east": { "model": "obscuras_storage:block/ejector", "y": 90 },
+    "facing=south": { "model": "obscuras_storage:block/ejector", "y": 180 },
+    "facing=west": { "model": "obscuras_storage:block/ejector", "y": 270 },
+    "facing=up": { "model": "obscuras_storage:block/ejector", "x": 270 },
+    "facing=down": { "model": "obscuras_storage:block/ejector", "x": 90 }
+  }
+}

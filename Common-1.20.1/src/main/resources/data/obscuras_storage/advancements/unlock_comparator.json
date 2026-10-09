@@ -1,0 +1,26 @@
+{
+  "criteria": {
+    "inv_changed-comparator": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:comparator"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:level_emitter"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-comparator"
+    ]
+  ]
+}

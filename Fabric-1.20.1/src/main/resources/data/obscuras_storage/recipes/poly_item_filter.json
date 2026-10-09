@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+  	{
+  		"item": "obscuras_storage:item_filter"
+  	},
+  	{
+  		"item": "minecraft:comparator"
+  	},
+  	{
+  		"tag": "c:diamonds"
+  	}
+  ],
+  "result": {
+    "item": "obscuras_storage:polymorphic_item_filter",
+    "count": 1
+  }
+}

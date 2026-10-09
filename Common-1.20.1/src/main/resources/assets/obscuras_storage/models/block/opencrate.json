@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "obscuras_storage:block/opencrate_top",
+        "down": "obscuras_storage:block/opencrate_bottom",
+        "north": "obscuras_storage:block/opencrate_side",
+         "east": "obscuras_storage:block/opencrate_side",
+        "south": "obscuras_storage:block/opencrate_side",
+         "west": "obscuras_storage:block/opencrate_side",
+        "particle": "obscuras_storage:block/opencrate_side"
+    }
+}

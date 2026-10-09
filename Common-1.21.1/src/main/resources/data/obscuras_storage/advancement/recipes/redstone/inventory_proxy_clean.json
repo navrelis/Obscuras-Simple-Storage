@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_inventory_proxy": {
+      "conditions": {
+        "items": [
+          {
+            "items": "obscuras_storage:inventory_proxy"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "obscuras_storage:inventory_proxy_clean"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_inventory_proxy"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:inventory_proxy_clean"
+    ]
+  }
+}

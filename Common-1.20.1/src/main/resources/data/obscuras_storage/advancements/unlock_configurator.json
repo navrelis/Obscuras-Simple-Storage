@@ -1,0 +1,20 @@
+{
+  "criteria": {
+    "unlocked-trim": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "obscuras_storage:trim"
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:inventory_configurator"
+    ]
+  },
+  "requirements": [
+    [
+      "unlocked-trim"
+    ]
+  ]
+}

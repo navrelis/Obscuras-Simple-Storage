@@ -1,0 +1,188 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    // ModDevGradle legacy (Forge 1.20.1): official mappings in dev, reobfuscates the jar to SRG.
+    id 'net.neoforged.moddev.legacyforge' version '2.0.148'
+}
+
+version = project.mod_version
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+java {
+    // Minecraft 1.20.1 targets Java 17; the toolchain is provisioned by foojay (settings.gradle).
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    withSourcesJar()
+}
+
+repositories {
+    maven { url = "https://maven.blamejared.com/" }            // JEI
+    maven { url = "https://maven.terraformersmc.com/releases/" } // EMI
+    maven { url = "https://maven.shedaniel.me/" }                // REI
+    maven { url = "https://maven.architectury.dev/" }            // Architectury (REI)
+    maven { url = "https://maven.theillusivec4.top/" }           // Curios
+}
+
+// Loader-agnostic code and assets live in ../Common-1.20.1 (shared with the Fabric build). This
+// project's own src/main only holds the Forge platform classes (same class names as their Fabric
+// twins), mods.toml, the access transformer and Forge-only data (forge: tag recipes/advancements,
+// Curios slots, the painted-variant blocks).
+def commonDir = file("../Common-1.20.1/src/main")
+
+sourceSets {
+    main {
+        java {
+            srcDir new File(commonDir, "java")
+        }
+        resources {
+            srcDir new File(commonDir, "resources")
+        }
+    }
+    // Unit tests of loader-neutral logic (plain JUnit, no running game)
+    test {
+        compileClasspath += main.compileClasspath
+        runtimeClasspath += main.runtimeClasspath
+    }
+    // In-world GameTests (Forge GameTest framework). Separate source set, never part of the release jar.
+    gametest {
+        compileClasspath += main.compileClasspath + main.output
+        runtimeClasspath += main.runtimeClasspath + main.output
+    }
+}
+
+// -PneoForge builds and runs against NeoForge 1.20.1 (a Forge 47.1 compatible loader) instead, in build-neo/, to check
+// that the mod also works there (compile, runServer, runGameTestServer). Releases are built without it.
+def useNeoForge = project.hasProperty('neoForge')
+if (useNeoForge) {
+    layout.buildDirectory = file('build-neo')
+}
+
+legacyForge {
+    if (useNeoForge) {
+        enable {
+            neoForgeVersion = "${project.minecraft_version}-${project.neoforge_version}"
+        }
+    } else {
+        version = "${project.minecraft_version}-${project.forge_version}"
+    }
+    validateAccessTransformers = true
+    accessTransformers = files('src/main/resources/META-INF/accesstransformer.cfg')
+
+    mods {
+        obscuras_storage {
+            sourceSet sourceSets.main
+            sourceSet sourceSets.gametest
+        }
+    }
+
+    runs {
+        client {
+            client()
+            gameDirectory = project.file('run/client')
+        }
+        server {
+            server()
+            gameDirectory = project.file('run/server')
+            programArgument '--nogui'
+        }
+        // Starts the GameTest server, runs every registered test of the obscuras_storage namespace and exits
+        // with the number of failed required tests (so a failing test fails the task). Run: gradlew runGameTestServer
+        gameTestServer {
+            type = "gameTestServer"
+            gameDirectory = layout.buildDirectory.dir('gametest').get().asFile
+            systemProperty 'forge.enableGameTest', 'true'
+            systemProperty 'forge.enabledGameTestNamespaces', 'obscuras_storage'
+        }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+}
+
+// The GameTest classes are only on the classpath of the gametest run, see gametest source set above
+sourceSets.main.runtimeClasspath += sourceSets.gametest.output
+
+dependencies {
+    // JEI, EMI, REI (+ Architectury) and Curios: compile against their APIs, never bundled or required.
+    modCompileOnly "mezz.jei:jei-1.20.1-common-api:${project.jei_version}"
+    modCompileOnly "mezz.jei:jei-1.20.1-forge-api:${project.jei_version}"
+    modCompileOnly "dev.emi:emi-forge:${project.emi_version}:api"
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-api-forge:${project.rei_version}") { transitive = false }
+    modCompileOnly("me.shedaniel:RoughlyEnoughItems-default-plugin-forge:${project.rei_version}") { transitive = false }
+    compileOnly "me.shedaniel.cloth:basic-math:0.6.1"
+    modCompileOnly("dev.architectury:architectury-forge:${project.architectury_version}") { transitive = false }
+    modCompileOnly "top.theillusivec4.curios:curios-forge:${project.curios_version}:api"
+    compileOnly 'com.google.code.findbugs:jsr305:3.0.2'
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+    options.compilerArgs += ['-Xlint:deprecation', '-Xlint:unchecked']
+}
+
+processResources {
+    inputs.property "version", project.version.toString().replaceFirst("^v", "")
+    filesMatching("META-INF/mods.toml") {
+        // Forge only accepts maven style versions (no leading "v"); the jar name keeps the v4.0.0 spelling
+        expand "version": project.version.toString().replaceFirst("^v", "")
+    }
+}
+
+jar {
+    // The MIT license text (with its copyright notices) ships at the root of the jar.
+    from("../LICENSE")
+    manifest {
+        attributes([
+            "Specification-Title"     : "obscuras_storage",
+            "Specification-Vendor"    : "Navrelis",
+            "Specification-Version"   : "1",
+            "Implementation-Title"    : "Obscura's Simple Storage",
+            "Implementation-Version"  : project.version,
+            "Implementation-Vendor"   : "Navrelis",
+        ])
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "failed", "skipped"
+        exceptionFormat = "full"
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        def mavenURL = System.getProperty("mavenDir")
+        if ("${mavenURL}" != "null") {
+            maven { url = file(mavenURL) }
+        }
+    }
+}
+
+// Every GameTest run starts from a fresh world; the empty test area template is read from gameteststructures/
+tasks.matching { it.name == 'runGameTestServer' }.configureEach {
+    group = 'verification'
+    description = 'Runs the in-world GameTests on a headless server, fails when a test fails.'
+    doFirst {
+        delete layout.buildDirectory.dir('gametest/world')
+        copy {
+            from "src/gametest/structures"
+            into layout.buildDirectory.dir('gametest/gameteststructures')
+        }
+    }
+}

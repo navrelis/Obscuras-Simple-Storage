@@ -1,0 +1,16 @@
+{
+	"credit": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+	"textures": {
+		"0": "obscuras_storage:block/inventory_cable"
+	},
+	"elements": [
+		{
+			"name": "cable_closed",
+			"from": [5, 5, 5],
+			"to": [11, 11, 5],
+			"faces": {
+				"north": {"uv": [10, 10, 16, 16], "texture": "#0"}
+			}
+		}
+	]
+}

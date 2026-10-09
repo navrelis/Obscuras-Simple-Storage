@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "obscuras_storage:inventory_cable_framed"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "result": {
+    "item": "obscuras_storage:inventory_cable_framed",
+    "count": 1
+  }
+}

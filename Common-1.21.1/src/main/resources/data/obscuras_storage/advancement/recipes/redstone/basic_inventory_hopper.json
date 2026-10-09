@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chest": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#c:chests"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_inventory_cable": {
+      "conditions": {
+        "items": [
+          {
+            "items": "obscuras_storage:inventory_cable"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "obscuras_storage:basic_inventory_hopper"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_chest",
+      "has_inventory_cable"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:basic_inventory_hopper"
+    ]
+  }
+}

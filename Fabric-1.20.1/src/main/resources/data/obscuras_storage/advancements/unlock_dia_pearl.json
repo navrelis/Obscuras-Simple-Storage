@@ -1,0 +1,42 @@
+{
+  "criteria": {
+    "inv_changed-ender_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_pearl"
+            ]
+          }
+        ]
+      }
+    },
+    "inv_changed-diamond": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "c:diamonds"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "obscuras_storage:inventory_cable_connector",
+      "obscuras_storage:inventory_cable_connector_framed",
+      "obscuras_storage:inventory_cable_connector_framed_clean",
+      "obscuras_storage:inventory_connector",
+      "obscuras_storage:inventory_interface",
+      "obscuras_storage:wireless_terminal"
+    ]
+  },
+  "requirements": [
+    [
+      "inv_changed-ender_pearl",
+      "inv_changed-diamond"
+    ]
+  ]
+}

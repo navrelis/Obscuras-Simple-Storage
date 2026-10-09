@@ -1,0 +1,7 @@
+{
+    "pack": {
+        "description": "Obscura's Simple Storage resources",
+        "pack_format": 34,
+        "supported_formats": [34, 48]
+    }
+}

@@ -1,0 +1,30 @@
+# Obscura's Simple Storage for Forge 1.20.1. Also loads on NeoForge 1.20.1 (47.1.x), which keeps the
+# javafml loader version 47 and the "forge" mod id of Forge 47.1.
+modLoader="javafml"
+loaderVersion="[47,)"
+license="MIT"
+
+[[mods]]
+modId="obscuras_storage"
+version="${version}"
+displayName="Obscura's Simple Storage"
+logoFile="icon.png"
+credits="Navrelis"
+authors="Navrelis"
+description='''
+A heavily optimized storage mod for Minecraft, made and maintained by Navrelis.
+'''
+
+[[dependencies.obscuras_storage]]
+    modId="forge"
+    mandatory=true
+    versionRange="[47.1,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.obscuras_storage]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.20.2)"
+    ordering="NONE"
+    side="BOTH"

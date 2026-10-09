@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "obscuras_storage:storage_terminal",
+    "obscuras_storage:crafting_terminal"
+  ]
+}

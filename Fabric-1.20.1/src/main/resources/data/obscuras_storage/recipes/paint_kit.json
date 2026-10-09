@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+  	"RGB",
+    "iaW",
+    "bS "
+  ],
+  "key": {
+  	"b": {
+      "item": "minecraft:water_bucket"
+    },
+    "a": {
+      "item": "minecraft:bucket"
+    },
+    "R": {
+      "tag": "c:red_dyes"
+    },
+    "G": {
+      "tag": "c:green_dyes"
+    },
+    "B": {
+      "tag": "c:blue_dyes"
+    },
+    "W": {
+      "tag": "minecraft:wool"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+	"i": {
+      "tag": "c:black_dyes"
+    }
+  },
+  "result": {
+    "item": "obscuras_storage:paint_kit",
+    "count": 1
+  }
+}
