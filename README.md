@@ -5,10 +5,10 @@ Developed and maintained by **Navrelis**. Mod id: `obscuras_storage`.
 ### Supported versions
 | Minecraft | Loader | Jar |
 | --- | --- | --- |
-| 1.21.1 | Fabric | `obscuras_simple_storage-fabric-mc1.21.1-v5.1.0.jar` |
-| 1.21.1 | NeoForge | `obscuras_simple_storage-neoforge-mc1.21.1-v5.1.0.jar` |
-| 1.20.1 | Fabric | `obscuras_simple_storage-fabric-mc1.20.1-v5.1.0.jar` |
-| 1.20.1 | Forge (also runs on NeoForge 1.20.1) | `obscuras_simple_storage-forge-mc1.20.1-v5.1.0.jar` |
+| 1.21.1 | Fabric | `obscuras_simple_storage-fabric-mc1.21.1-v5.1.1.jar` |
+| 1.21.1 | NeoForge | `obscuras_simple_storage-neoforge-mc1.21.1-v5.1.1.jar` |
+| 1.20.1 | Fabric | `obscuras_simple_storage-fabric-mc1.20.1-v5.1.1.jar` |
+| 1.20.1 | Forge (also runs on NeoForge 1.20.1) | `obscuras_simple_storage-forge-mc1.20.1-v5.1.1.jar` |
 
 All four builds have the same features, balance and fixes. The server and the clients must run the same version.
 
@@ -55,7 +55,7 @@ The mod is built to stay cheap on multiplayer servers, in singleplayer worlds an
 | --- | --- | --- | --- | --- |
 | Minecraft | 1.21.1 | 1.21.1 | 1.20.1 | 1.20.1 |
 | Loader | [Fabric Loader](https://fabricmc.net/use) | [NeoForge](https://neoforged.net) 21.1.x | [Fabric Loader](https://fabricmc.net/use) | [Forge](https://files.minecraftforge.net) 47.1+, or NeoForge 1.20.1 (47.1.x) |
-| Other | [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api), [Indium](https://www.curseforge.com/minecraft/mc-mods/indium) if using Sodium | - | [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api), [Indium](https://www.curseforge.com/minecraft/mc-mods/indium) if using Sodium | - |
+| Other | [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) | - | [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) | - |
 
 ### Optional integrations
 None of these is required or bundled.
@@ -85,7 +85,7 @@ Each loader is its own Gradle project; the loader-agnostic code lives in `Common
 | `Fabric-1.20.1` | `gradlew.bat build` | `gradlew.bat runGametest` |
 | `Forge-1.20.1` | `gradlew.bat build` | `gradlew.bat runGameTestServer`, and `gradlew.bat -PneoForge runGameTestServer` for NeoForge 1.20.1 |
 
-The jars are written to each project's `build/libs/` (for example `obscuras_simple_storage-fabric-mc1.21.1-v5.1.0.jar`; ignore the `-sources` jar). GameTests are not part of the release jars. `gradlew.bat runClient` starts a dev client.
+The jars are written to each project's `build/libs/` (for example `obscuras_simple_storage-fabric-mc1.21.1-v5.1.1.jar`; ignore the `-sources` jar). GameTests are not part of the release jars. `gradlew.bat runClient` starts a dev client.
 
 To build, test and collect all four release jars in one go, run the release script with PowerShell 7:
 

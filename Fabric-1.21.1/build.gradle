@@ -24,6 +24,12 @@ repositories {
         }
     }
     maven {
+        url = 'https://api.modrinth.com/maven'
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
     	// location of a maven mirror for JEI files, as a fallback
     	name = "ModMaven"
     	url = "https://modmaven.dev"
@@ -95,6 +101,9 @@ dependencies {
 	}
 	modImplementation("dev.architectury:architectury-fabric:13.0.6")
 	
+	// Sodium 0.5.x (no Fabric Rendering API), compile-only for the SodiumBlockRendererMixin target
+	modCompileOnly "maven.modrinth:sodium:mc1.21-0.5.11"
+
 	modCompileOnly  "dev.emi:emi-fabric:${project.emi_version}:api"
 	modLocalRuntime "dev.emi:emi-fabric:${project.emi_version}"
 	

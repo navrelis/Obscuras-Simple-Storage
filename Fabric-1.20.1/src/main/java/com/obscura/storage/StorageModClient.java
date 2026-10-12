@@ -10,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -22,6 +23,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.event.client.player.ClientPickBlockApplyCallback;
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs;
+import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.KeyMapping;
@@ -221,6 +223,14 @@ public class StorageModClient implements ClientModInitializer {
 		KeyBindingHelper.registerKeyBinding(toggleRestock);
 		highlightNetwork = new KeyMapping("key.obscuras_storage.highlight_network", InputConstants.KEY_H, KeyMapping.CATEGORY_GAMEPLAY);
 		KeyBindingHelper.registerKeyBinding(highlightNetwork);
+
+		// Indigo and Indium register their renderer in their own initializers, so check once the client is up.
+		ClientLifecycleEvents.CLIENT_STARTED.register(client -> {
+			boolean sodium05 = FabricLoader.getInstance().getModContainer("sodium")
+					.map(m -> m.getMetadata().getVersion().getFriendlyString().startsWith("0.5")).orElse(false);
+			if(!RendererAccess.INSTANCE.hasRenderer() && !sodium05)
+				StorageMod.LOGGER.warn("No Fabric Rendering API renderer found: painted blocks render as plain stone. With Sodium, install Indium.");
+		});
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			if (client.player == null)

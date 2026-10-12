@@ -1,5 +1,25 @@
 # Obscura's Simple Storage - Changelog
 
+## v5.1.1
+
+### Highlights
+* Bug-fix release. No new features, no config change, and worlds load unchanged.
+* Fixed (Fabric 1.20.1 and Fabric 1.21.1): painted blocks rendered wrong when Sodium 0.5.x was installed without Indium. On 1.20.1 they looked like plain stone, on 1.21.1 they lost their paint. Sodium 0.6 and newer were never affected.
+* Forge 1.20.1 and NeoForge 1.21.1 have no code change. They are re-released as v5.1.1 only to keep the version numbers aligned.
+
+### Fixes
+* **Painted blocks with Sodium 0.5.x (Fabric).** Blocks painted with the Paint Kit (Framed Inventory Cable, Inventory Cable Connector (Framed), Inventory Proxy and Inventory Trim) are drawn through the Fabric Rendering API. Sodium 0.5.x does not support that API on its own, so without Indium the paint was not drawn. The mod now hooks into Sodium 0.5.x directly, and painted blocks render correctly with Sodium alone, with Sodium and Indium, and without Sodium.
+* **Startup warning (Fabric 1.20.1).** The mod logs a warning at startup when no Fabric Rendering API renderer is present and its Sodium hook cannot help.
+
+### Compatibility
+* Minecraft, loader and optional mod requirements are the same as v5.1.0.
+* No change to worlds, configs or the save format. Replacing the v5.1.0 jar is enough.
+* Forge 1.20.1 and NeoForge 1.21.1: nothing changes in the game. Updating is optional.
+
+### Development
+* Version bumped to v5.1.1 on all four builds. Jar names stay `obscuras_simple_storage-<loader>-mc<version>-v5.1.1.jar`.
+* Automated tests per build: Fabric 1.21.1 171 JUnit tests + 117 GameTests, NeoForge 1.21.1 no JUnit tests + 122 GameTests, Fabric 1.20.1 181 JUnit tests + 126 GameTests, Forge 1.20.1 104 JUnit tests + 132 GameTests (also 132 on NeoForge 1.20.1 47.1). The Fabric 1.20.1 build also has a paint proof run (`gradlew runPaintProof`, optionally with `-PwithSodium` and `-PwithIndium`) that starts a client, paints test blocks and checks screenshots.
+
 ## v5.1.0
 
 ### Highlights

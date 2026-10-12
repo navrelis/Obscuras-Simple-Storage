@@ -2,11 +2,15 @@
   "required": true,
   "minVersion": "0.8",
   "package": "com.obscura.storage.mixin",
+  "plugin": "com.obscura.storage.mixin.ObscuraMixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "BlockEntityMixin",
     "ChunkSerializerMixin",
     "MappedRegistryMixin"
+  ],
+  "client": [
+    "client.SodiumBlockRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

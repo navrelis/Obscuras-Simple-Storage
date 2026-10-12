@@ -48,6 +48,37 @@ public class BakedPaintedModel implements UnbakedModel, BakedModel, FabricBakedM
 		MODEL_CACHE.clear();
 	}
 
+	/**
+	 * The quads of the painted block's own model for renderers that never call emitBlockQuads (Sodium
+	 * without Indium); {@code fallback} when the block is not painted. Runs on chunk build threads.
+	 */
+	public static List<BakedQuad> paintedQuads(BlockAndTintGetter world, BlockPos pos, Direction face,
+			RandomSource random, List<BakedQuad> fallback) {
+		try {
+			BlockEntity tile = world.getBlockEntity(pos);
+			if(tile instanceof PaintedBlockEntity painted) {
+				return paintedQuads(painted.getPaintedBlockState(),
+						s -> MODEL_CACHE.computeIfAbsent(s, k -> Minecraft.getInstance().getBlockRenderer().getBlockModel(k)),
+						face, random, fallback);
+			}
+		} catch (Exception e) {
+		}
+		return fallback;
+	}
+
+	public static List<BakedQuad> paintedQuads(BlockState painted, Function<BlockState, BakedModel> modelLookup,
+			Direction face, RandomSource random, List<BakedQuad> fallback) {
+		if(painted == null || painted == Blocks.AIR.defaultBlockState())
+			return fallback;
+		try {
+			BakedModel model = modelLookup.apply(painted);
+			if(model != null && !(model instanceof BakedPaintedModel))
+				return model.getQuads(painted, face, random);
+		} catch (Exception e) {
+		}
+		return fallback;
+	}
+
 	@Override
 	public boolean isVanillaAdapter() {
 		return false;

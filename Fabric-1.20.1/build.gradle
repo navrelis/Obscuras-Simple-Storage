@@ -24,6 +24,12 @@ repositories {
         }
     }
     maven {
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
+    maven {
     	// location of a maven mirror for JEI files, as a fallback
     	name = "ModMaven"
     	url = "https://modmaven.dev"
@@ -42,6 +48,7 @@ version = project.mod_version
 group = project.maven_group
 
 def useLib = System.getProperty("useLib")
+def paintProofName = project.findProperty('proofName') ?: 'proof'
 
 dependencies {
 	//to change the versions see the gradle.properties file
@@ -77,6 +84,12 @@ dependencies {
 	
 	modCompileOnly ("curse.maven:jade-324717:5493289")
 	
+	// Sodium 0.5.x has no Fabric Rendering API; SodiumBlockRendererMixin hooks its block mesher.
+	modCompileOnly "maven.modrinth:sodium:mc1.20.1-0.5.13-fabric"
+	// Dev runtime only, for the paint proof (gradlew runPaintProof -PwithSodium [-PwithIndium]); never set for a release build.
+	if(project.hasProperty('withSodium')) modLocalRuntime "maven.modrinth:sodium:mc1.20.1-0.5.13-fabric"
+	if(project.hasProperty('withIndium')) modLocalRuntime "maven.modrinth:indium:1.0.36+mc1.20.1"
+
 	modCompileOnly "dev.emi:trinkets:${project.trinkets_version}"
 	
 	modCompileOnly("me.shedaniel:RoughlyEnoughItems-api:${project.rei_version}"){
@@ -183,6 +196,42 @@ loom {
 			vmArg "-Dfabric-api.gametest.report-file=${project.layout.buildDirectory.get().asFile}/gametest/junit.xml"
 			runDir "build/gametest"
 			ideConfigGenerated false
+		}
+		// In-game visual proof of the painted block rendering (PaintProofClient in the gametest source
+		// set): a client that builds a test scene in a fresh world, takes screenshots and exits.
+		// gradlew runPaintProof [-PwithSodium [-PwithIndium]] [-PproofName=B_fix] [-PproofDir=<folder>]
+		paintProof {
+			client()
+			name "Paint Proof"
+			source sourceSets.gametest
+			vmArg "-Dobscuras.paintProof=${paintProofName}"
+			// Loom runs the dev client on LWJGL 3.3.2 under Java 19+; Sodium 0.5 refuses anything but 3.3.1 unless told otherwise.
+			vmArg "-Dsodium.checks.issue2561=false"
+			programArgs "--width", "1280", "--height", "720"
+			runDir "build/paintproof"
+			ideConfigGenerated false
+		}
+	}
+}
+
+// Every proof run starts from a fresh world; screenshots, the result file and the log are copied to proofDir.
+tasks.matching { it.name == 'runPaintProof' }.configureEach {
+	group = 'verification'
+	description = 'Runs the painted block rendering proof in a dev client (add -PwithSodium / -PwithIndium).'
+	def runDir = file("build/paintproof")
+	def proofDir = file(project.findProperty('proofDir') ?: "build/paintproof-results")
+	doFirst {
+		delete new File(runDir, "saves/paintproof"), new File(runDir, "proof-out")
+	}
+	doLast {
+		copy {
+			from new File(runDir, "proof-out")
+			into proofDir
+		}
+		copy {
+			from new File(runDir, "logs/latest.log")
+			into proofDir
+			rename { "${paintProofName}_latest.log" }
 		}
 	}
 }

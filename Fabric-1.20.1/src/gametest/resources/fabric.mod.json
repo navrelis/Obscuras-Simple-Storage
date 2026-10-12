@@ -7,6 +7,9 @@
   "license": "MIT",
   "environment": "*",
   "entrypoints": {
+    "client": [
+      "com.obscura.storage.gametest.PaintProofClient"
+    ],
     "fabric-gametest": [
       "com.obscura.storage.gametest.NetworkGameTests",
       "com.obscura.storage.gametest.HopperGameTests",

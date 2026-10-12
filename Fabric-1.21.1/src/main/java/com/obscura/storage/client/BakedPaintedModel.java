@@ -2,6 +2,7 @@ package com.obscura.storage.client;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 import net.fabricmc.fabric.api.renderer.v1.mesh.MutableQuadView;
@@ -80,6 +81,44 @@ public class BakedPaintedModel implements BakedModel {
 			// Add the quad to the mesh
 			emitter.emit();
 		}
+	}
+
+	/**
+	 * The painted look as plain quads, for renderers without the Fabric Rendering API (Sodium 0.5.x without
+	 * Indium never calls {@link #emitBlockQuads}). Returns {@code fallback} when there is nothing to paint.
+	 */
+	public static List<BakedQuad> paintedQuads(BlockAndTintGetter world, BlockPos pos, Direction face,
+			RandomSource random, List<BakedQuad> fallback) {
+		try {
+			BlockEntity tile = world.getBlockEntity(pos);
+			if (tile instanceof PaintedBlockEntity painted) {
+				return paintedQuads(painted.getPaintedBlockState(), BakedPaintedModel::cachedModel, face, random, fallback);
+			}
+		} catch (Exception e) {
+			StorageMod.LOGGER.debug("Failed to get painted block quads", e);
+		}
+		return fallback;
+	}
+
+	static List<BakedQuad> paintedQuads(BlockState paintedState, Function<BlockState, BakedModel> modelLookup,
+			Direction face, RandomSource random, List<BakedQuad> fallback) {
+		if (paintedState == null || paintedState == Blocks.AIR.defaultBlockState()) {
+			return fallback;
+		}
+		try {
+			BakedModel model = modelLookup.apply(paintedState);
+			if (model == null || model instanceof BakedPaintedModel) {
+				return fallback;
+			}
+			return model.getQuads(paintedState, face, random);
+		} catch (Exception e) {
+			StorageMod.LOGGER.debug("Failed to get painted block quads", e);
+			return fallback;
+		}
+	}
+
+	private static BakedModel cachedModel(BlockState state) {
+		return MODEL_CACHE.computeIfAbsent(state, s -> Minecraft.getInstance().getBlockRenderer().getBlockModel(s));
 	}
 
 	@Override
